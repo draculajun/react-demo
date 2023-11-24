@@ -1,6 +1,7 @@
 import './App.css';
 import {Component} from "react";
 import {Todo} from "./components/todo/Todo";
+import {nanoid} from "nanoid";
 
 export default class App extends Component {
     state = {
@@ -16,7 +17,9 @@ export default class App extends Component {
             id: 3,
             name: 'todo3',
             isDone: true,
-        }]
+        }],
+
+        isDoneNum: 0,
     };
 
     handleKeyUp = (event) => {
@@ -24,10 +27,10 @@ export default class App extends Component {
 
         if (keyCode !== 13) return;
 
-        if (target.value.trim() == '') return;
+        if (target.value.trim() === '') return;
 
         const newTodoList = [{
-            id: this.state.todoList.length + 1,
+            id: nanoid(),
             name: target.value,
             isDone: false,
         }, ...this.state.todoList];
@@ -39,11 +42,16 @@ export default class App extends Component {
 
     changeTodo = (id, isDone) => {
         let newTodoList = this.state.todoList.map(e => {
-            if (e.id == id) {
+            if (e.id === id) {
                 e.isDone = isDone;
             }
             return e;
         });
+        this.setState({todoList: newTodoList});
+    }
+
+    deleteTodo = (id) => {
+        const newTodoList = this.state.todoList.filter(e => e.id !== id);
         this.setState({todoList: newTodoList});
     }
 
@@ -56,9 +64,15 @@ export default class App extends Component {
                 <div className={'todoListContainer'}>
                     {
                         this.state.todoList.map(todo => {
-                            return <Todo todo={todo} key={todo.id} changeTodo={this.changeTodo}></Todo>
+                            return <Todo todo={todo} key={todo.id} changeTodo={this.changeTodo}
+                                         deleteTodo={this.deleteTodo}></Todo>
                         })
                     }
+                </div>
+
+                <div>
+                    <input type='checkbox'/>
+                    <span>已完成{this.state.isDoneNum}/全部{this.state.todoList.length}</span>
                 </div>
 
             </div>
