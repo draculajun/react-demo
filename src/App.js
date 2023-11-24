@@ -1,27 +1,54 @@
-import logo from './logo.svg';
 import './App.css';
-import {Hello} from './components/Hello/Hello';
+import {TodoList} from "./components/todoList/TodoList";
+import {Component} from "react";
 
-function App() {
-  return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-        <Hello></Hello>
-      </div>
-  );
+export default class App extends Component {
+
+  state = {
+    'todoList': [{
+      id: 1,
+      name: 'todo1',
+      isDone: false,
+    }, {
+      id: 2,
+      name: 'todo2',
+      isDone: false,
+    }, {
+      id: 3,
+      name: 'todo3',
+      isDone: true,
+    }]
+  };
+
+  handleKeyUp = (event) => {
+    const {keyCode, target} = event;
+
+    if (keyCode != 13) return;
+
+    if (target.value.trim() == '') return;
+
+    const newTodoList = [{
+      id: this.state.todoList.length + 1,
+      name: target.value,
+      isDone: false,
+    }, ...this.state.todoList];
+
+    this.setState({todoList: newTodoList});
+
+    target.value = '';
+  }
+
+  render() {
+    return (
+        <div className="App">
+
+          <input onKeyUp={this.handleKeyUp} className={'textInput'} placeholder={'请输入任务名称，按回车确认'}/>
+
+          <TodoList todoList={this.state.todoList}/>
+
+        </div>
+    );
+  }
+
 }
 
-export default App;
