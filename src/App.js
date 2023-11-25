@@ -5,7 +5,7 @@ import {nanoid} from "nanoid";
 
 export default class App extends Component {
     state = {
-        'todoList': [{
+        todoList: [{
             id: 1,
             name: 'todo1',
             isDone: false,
@@ -18,8 +18,6 @@ export default class App extends Component {
             name: 'todo3',
             isDone: true,
         }],
-
-        isDoneNum: 0,
     };
 
     handleKeyUp = (event) => {
@@ -50,29 +48,67 @@ export default class App extends Component {
         this.setState({todoList: newTodoList});
     }
 
+    handleCheckAll = (event) => {
+        if (event.target.checked) {
+            this.state.todoList.forEach(e => e.isDone = true);
+        } else {
+            this.state.todoList.forEach(e => e.isDone = false);
+        }
+        this.setState({todoList: this.state.todoList});
+    }
+
     deleteTodo = (id) => {
         const newTodoList = this.state.todoList.filter(e => e.id !== id);
         this.setState({todoList: newTodoList});
     }
 
+    isCheckAll = () => {
+        if (this.state.todoList.length === 0) return false;
+
+        const isDoneNum = this.state.todoList.filter(e => e.isDone === true).length;
+        if (isDoneNum === this.state.todoList.length) {
+            return true;
+        }
+        return false;
+    }
+
+    handleDeleteDone = () => {
+        const newTodoList = this.state.todoList.filter(e => e.isDone === false);
+        this.setState({todoList: newTodoList});
+    }
+
     render() {
+        const isDoneNum = this.state.todoList.filter(e => e.isDone === true).length;
         return (
             <div className="App">
 
-                <input onKeyUp={this.handleKeyUp} className={'textInput'} placeholder='请输入任务名称，按回车确认'/>
+                <input onKeyUp={this.handleKeyUp}
+                       className={'textInput'}
+                       placeholder='请输入任务名称，按回车确认'/>
 
                 <div className={'todoListContainer'}>
                     {
                         this.state.todoList.map(todo => {
-                            return <Todo todo={todo} key={todo.id} changeTodo={this.changeTodo}
+                            return <Todo todo={todo} key={todo.id}
+                                         changeTodo={this.changeTodo}
                                          deleteTodo={this.deleteTodo}></Todo>
                         })
                     }
                 </div>
 
-                <div>
-                    <input type='checkbox'/>
-                    <span>已完成{this.state.isDoneNum}/全部{this.state.todoList.length}</span>
+                <div className={'foot'}>
+                    <div>
+                        <input type='checkbox'
+                               checked={this.isCheckAll()}
+                               onChange={this.handleCheckAll}/>
+                        <span>已完成{isDoneNum} / 全部{this.state.todoList.length}</span>
+                    </div>
+                    <div>
+                        <button onClick={this.handleDeleteDone}
+                                className={'footBtn'}>
+                            清除已完成任务
+                        </button>
+                    </div>
                 </div>
 
             </div>

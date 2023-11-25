@@ -35,7 +35,8 @@ export class Todo extends Component {
                  style={{backgroundColor: this.state.mouse ? '#ddd' : '#fff'}}
                  onMouseLeave={this.handleMouseLeave(false)} onMouseEnter={this.handleMouseLeave(true)}
                  key={todo.id}>
-                <input style={{cursor: 'pointer'}} type={'checkbox'} defaultChecked={todo.isDone}
+                <input style={{cursor: 'pointer'}} type={'checkbox'}
+                       checked={todo.isDone}
                        onChange={(event) => {
                            changeTodo(todo.id, event.target.checked)
                        }}/>

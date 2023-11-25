@@ -1,7 +1,7 @@
 .App {
     margin: 20px;
 
-    width: 200px;
+    width: 300px;
 
     border: 1px solid rgb(232, 232, 232);
     padding: 10px;
@@ -10,11 +10,24 @@
 .textInput {
     height: 18px;
 
-    width: 195px;
+    width: 295px;
 }
 
 .todoListContainer {
     margin-top: 20px;
+}
+
+.foot {
+    margin-top: 10px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.footBtn:hover {
+    cursor: pointer;
+    background-color: red;
+    color: white;
 }
 
 .App-logo {
