@@ -2,6 +2,7 @@ import './App.css';
 import {Component} from "react";
 import {Todo} from "./components/todo/Todo";
 import {nanoid} from "nanoid";
+import kcAxios from "./utils/axios/core";
 
 export default class App extends Component {
     state = {
@@ -77,6 +78,19 @@ export default class App extends Component {
         this.setState({todoList: newTodoList});
     }
 
+    handleLogin = () => {
+        kcAxios.kcPostByForm({
+            url: 'https://api.900sui.cn:442/v1/u/user/login',
+            data: {
+                phone: '18621212121',
+                password: '111111',
+                loginType: 2,
+            }
+        }).then(res => {
+            debugger
+        })
+    }
+
     render() {
         const isDoneNum = this.state.todoList.filter(e => e.isDone === true).length;
         return (
@@ -111,6 +125,7 @@ export default class App extends Component {
                     </div>
                 </div>
 
+                <button onClick={this.handleLogin}>login</button>
             </div>
         );
     }
