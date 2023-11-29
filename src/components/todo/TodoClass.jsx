@@ -2,7 +2,7 @@ import {Component} from "react";
 import './todo.css';
 import PropTypes from 'prop-types';
 
-export class Todo extends Component {
+export class TodoClass extends Component {
 
     static propTypes = {
         changeTodo: PropTypes.func.isRequired,

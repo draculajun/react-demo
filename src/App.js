@@ -1,8 +1,9 @@
 import './App.css';
 import {Component} from "react";
-import {Todo} from "./components/todo/Todo";
+import {TodoClass} from "./components/todo/TodoClass";
 import {nanoid} from "nanoid";
 import kcAxios from "./utils/axios/core";
+import TodoFunc from "./components/todo/TodoFunc";
 
 export default class App extends Component {
     state = {
@@ -103,9 +104,19 @@ export default class App extends Component {
                 <div className={'todoListContainer'}>
                     {
                         this.state.todoList.map(todo => {
-                            return <Todo todo={todo} key={todo.id}
-                                         changeTodo={this.changeTodo}
-                                         deleteTodo={this.deleteTodo}></Todo>
+                            return <TodoClass todo={todo} key={todo.id}
+                                             changeTodo={this.changeTodo}
+                                             deleteTodo={this.deleteTodo}></TodoClass>
+                        })
+                    }
+                </div>
+
+                <div className={'todoListContainer'}>
+                    {
+                        this.state.todoList.map(todo => {
+                            return <TodoFunc todo={todo} key={todo.id}
+                                             changeTodo={this.changeTodo}
+                                             deleteTodo={this.deleteTodo}></TodoFunc>
                         })
                     }
                 </div>
