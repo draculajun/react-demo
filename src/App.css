@@ -1,8 +1,6 @@
 .App {
     margin: 20px;
 
-    width: 300px;
-
     border: 1px solid rgb(232, 232, 232);
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
     padding: 10px;
@@ -14,8 +12,12 @@
     width: 295px;
 }
 
-.todoListContainer {
-    margin-top: 20px;
+.link {
+    display: block;
+}
+
+.link.active {
+    color: #61dafb;
 }
 
 .foot {
