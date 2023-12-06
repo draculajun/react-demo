@@ -4,6 +4,7 @@ import App from "../App";
 import HelloWorld1 from "../pages/helloWorld/HelloWorld1";
 import HelloWorld2 from "../pages/helloWorld/HelloWorld2";
 import Todo from "../components/todo/Todo";
+import HelloWorld3 from "../pages/helloWorld/HelloWorld3";
 
 const Routes = () => {
     const routes = useRoutes([
@@ -25,8 +26,11 @@ const Routes = () => {
                             path: "hello1",
                             element: <HelloWorld1/>,
                         }, {
-                            path: "hello2",
+                            path: "hello2/:id",
                             element: <HelloWorld2/>,
+                        }, {
+                            path: "hello3",
+                            element: <HelloWorld3/>,
                         }
                     ]
                 }, {
