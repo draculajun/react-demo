@@ -5,6 +5,7 @@ import HelloWorld1 from "../pages/helloWorld/HelloWorld1";
 import HelloWorld2 from "../pages/helloWorld/HelloWorld2";
 import Todo from "../components/todo/Todo";
 import HelloWorld3 from "../pages/helloWorld/HelloWorld3";
+import ErrorPage from "../pages/ErrorPage";
 
 const Routes = () => {
     const routes = useRoutes([
@@ -38,6 +39,9 @@ const Routes = () => {
                     element: <Todo/>,
                 }
             ]
+        }, {
+            path: "*",
+            element: <ErrorPage/>,
         },
     ])
 
