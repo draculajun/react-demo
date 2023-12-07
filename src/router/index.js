@@ -6,16 +6,20 @@ import HelloWorld2 from "../pages/helloWorld/HelloWorld2";
 import Todo from "../components/todo/Todo";
 import HelloWorld3 from "../pages/helloWorld/HelloWorld3";
 import ErrorPage from "../pages/ErrorPage";
+import {Index} from "../pages/Index";
 
 const router = createBrowserRouter([
     {
-        path: '/',
-        element: <Navigate to="/hello"/>
+        path: "/",
+        element: <Navigate to="/index"/>,
     }, {
         path: "/",
         element: <App/>,
         children: [
             {
+                path: 'index',
+                element: <Index/>
+            }, {
                 path: 'hello',
                 element: <Navigate to="/hello/hello1"/>
             }, {
