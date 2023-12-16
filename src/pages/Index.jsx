@@ -5,20 +5,20 @@ import './index.css'
 import {useNavigate} from "react-router-dom";
 
 export function Index() {
-    const [menuInfoList, setMenuInfoList] = useState([]);
+    const [industryList, setIndustryList] = useState([]);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         IndustryApi.getIndustryAndIndus().then(res => {
-            setMenuInfoList(res.data.List);
+            setIndustryList(res.data.List);
         })
     }, [])
 
-    function handleMenuClick(menuInfoList, industryId, subIndustryId) {
+    function handleMenuClick(industryId, subIndustryId) {
         navigate('/commercial', {
             state: {
-                menuInfoList,
+                industryList,
                 industryId,
                 subIndustryId,
             }
@@ -27,7 +27,7 @@ export function Index() {
 
     return (
         <div className='indexContainer'>
-            <Menu className={'menu'} menuInfoList={menuInfoList} handleMenuClick={handleMenuClick}></Menu>
+            <Menu className={'menu'} industryList={industryList} handleMenuClick={handleMenuClick}></Menu>
             <div className={'rollPic'}>container</div>
         </div>
     )

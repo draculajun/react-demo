@@ -2,18 +2,18 @@ import {useState} from "react";
 import './CommercialHeader.scss';
 import {Button} from "antd";
 
-export default function CommercialHeader({menuInfoList, industryId, subIndustryId}) {
+export default function CommercialHeader({industryList, industryId, subIndustryId}) {
     let menuInfoIndustryMap = new Map();
-    menuInfoList.forEach(e => {
+    industryList.forEach(e => {
         menuInfoIndustryMap.set(e.IndustryId, e.Sub);
     });
 
-    menuInfoList = [
+    industryList = [
         {
             IndustryId: 0,
             IndustryName: '全部'
         },
-        ...menuInfoList,
+        ...industryList,
     ];
 
     const initSubIndustry = {
@@ -66,7 +66,7 @@ export default function CommercialHeader({menuInfoList, industryId, subIndustryI
                         领域分类
                     </div>
                     <ul className={'commercialHeaderRight'}>
-                        {menuInfoList.map((item) => (
+                        {industryList.map((item) => (
                             <li key={item.IndustryId}>
                                 <Button type="link" className={item.IndustryId === currentIndustry ? 'active' : ''}
                                         onClick={industryClickHandler(item)}> {item.IndustryName} </Button>

@@ -1,7 +1,7 @@
 import './menu.scss';
 import {useState} from "react";
 
-export default function Menu({menuInfoList, handleMenuClick}) {
+export default function Menu({industryList, handleMenuClick}) {
     let currentMenuId = 0;
 
     const [currentSubmenuInfoList, setCurrentSubmenuInfoList] = useState([]);
@@ -21,7 +21,7 @@ export default function Menu({menuInfoList, handleMenuClick}) {
 
     function subItemHandleClick(subItem) {
         return () => {
-            handleMenuClick(menuInfoList, currentMenuId, subItem.IndusId)
+            handleMenuClick(currentMenuId, subItem.IndusId)
         }
     }
 
@@ -29,7 +29,7 @@ export default function Menu({menuInfoList, handleMenuClick}) {
         <div>
             <ul className={'menu'}>
                 {
-                    menuInfoList.map((item) => (
+                    industryList.map((item) => (
                         <li key={item.IndustryId}
                             onMouseOver={handleMenuMouserOver(item)}
                             onMouseOut={handleMenuMouserOut(item)}>
