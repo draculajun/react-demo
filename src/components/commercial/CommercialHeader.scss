@@ -1,0 +1,36 @@
+.commercialHeaderContainer {
+  margin: 20px;
+
+  .commercialHeader_layout {
+    display: flex;
+
+    .caregoryLeft {
+      width: 100px;
+    }
+
+    .commercialHeaderRight {
+      display: flex;
+      flex: 1;
+      flex-wrap: wrap;
+
+      > li {
+        display: flex;
+        margin-right: 30px;
+        margin-bottom: 15px;
+        color: rgb(98, 98, 98);
+        font-family: 思源黑体;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 23px;
+
+        &:hover {
+          color: #FE6022FF;
+        }
+
+        .active {
+          color: #FE6022FF;
+        }
+      }
+    }
+  }
+}

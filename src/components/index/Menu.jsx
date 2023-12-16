@@ -22,7 +22,7 @@ export default function Menu({menuInfoList}) {
     function subItemHandleClick() {
         navigate('/commercial', {
             state: {
-                menuInfoList: menuInfoList,
+                menuInfoList,
             }
         })
     }

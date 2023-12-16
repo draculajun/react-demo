@@ -6,7 +6,7 @@ export default function Index() {
     let menuInfoList;
     const location = useLocation();
     if (location.state) {
-        menuInfoList = location.state;
+        menuInfoList = location.state.menuInfoList;
     }
 
     return (
