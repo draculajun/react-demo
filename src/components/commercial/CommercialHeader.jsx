@@ -1,8 +1,8 @@
 import {useState} from "react";
 import './CommercialHeader.scss';
+import {Button} from "antd";
 
-export default function CommercialHeader({menuInfoList}) {
-
+export default function CommercialHeader({menuInfoList, industryId, subIndustryId}) {
     let menuInfoIndustryMap = new Map();
     menuInfoList.forEach(e => {
         menuInfoIndustryMap.set(e.IndustryId, e.Sub);
@@ -16,28 +16,35 @@ export default function CommercialHeader({menuInfoList}) {
         ...menuInfoList,
     ];
 
-    const [currentIndustry, setCurrentIndustry] = useState(0);
-    const [currentSubIndustry, setCurrentSubIndustry] = useState(0);
-
-    const [subIndustryList, setSubIndustryList] = useState([{
+    const initSubIndustry = {
         IndusId: 0,
         Name: '全部'
-    }]);
+    };
+
+    let tmpSubIndustryList;
+    if (industryId != null) {
+        tmpSubIndustryList = [
+            initSubIndustry, ...menuInfoIndustryMap.get(industryId)
+        ];
+    } else {
+        tmpSubIndustryList = [initSubIndustry];
+    }
+    const [subIndustryList, setSubIndustryList] = useState(tmpSubIndustryList);
+
+    const [currentIndustry, setCurrentIndustry] = useState(industryId == null ? 0 : industryId);
+    const [currentSubIndustry, setCurrentSubIndustry] = useState(subIndustryId == null ? 0 : subIndustryId);
 
     function industryClickHandler(item) {
         return (e) => {
             e.preventDefault();
             setCurrentIndustry(item.IndustryId);
 
-            const tmpSubIndustryList = [{
-                IndusId: 0,
-                Name: '全部',
-            }
-            ];
-            if (item.IndustryId != 0) {
+            let tmpSubIndustryList = initSubIndustry;
+            if (item.IndustryId !== 0) {
                 tmpSubIndustryList.push(...menuInfoIndustryMap.get(item.IndustryId))
-                setSubIndustryList(tmpSubIndustryList);
             }
+
+            setSubIndustryList(tmpSubIndustryList);
             setCurrentSubIndustry(0);
         }
     }
@@ -61,11 +68,10 @@ export default function CommercialHeader({menuInfoList}) {
                     <ul className={'commercialHeaderRight'}>
                         {menuInfoList.map((item) => (
                             <li key={item.IndustryId}>
-                                <a href="#" className={item.IndustryId == currentIndustry ? 'active' : ''}
-                                   onClick={industryClickHandler(item)}> {item.IndustryName} </a>
+                                <Button type="link" className={item.IndustryId === currentIndustry ? 'active' : ''}
+                                        onClick={industryClickHandler(item)}> {item.IndustryName} </Button>
                             </li>
                         ))}
-
                     </ul>
                 </div>
 
@@ -77,8 +83,8 @@ export default function CommercialHeader({menuInfoList}) {
                         {
                             subIndustryList.map(item => (
                                 <li key={item.IndusId}>
-                                    <a href="#" className={item.IndusId == currentSubIndustry ? 'active' : ''}
-                                       onClick={subIndustryClickHandler(item)}> {item.Name} </a>
+                                    <Button type="link" className={item.IndusId === currentSubIndustry ? 'active' : ''}
+                                            onClick={subIndustryClickHandler(item)}> {item.Name} </Button>
                                 </li>
                             ))
                         }

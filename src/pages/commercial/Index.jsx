@@ -3,15 +3,11 @@ import {useLocation} from "react-router-dom";
 
 export default function Index() {
 
-    let menuInfoList;
     const location = useLocation();
-    if (location.state) {
-        menuInfoList = location.state.menuInfoList;
-    }
 
     return (
         <div>
-            <CommercialHeader menuInfoList={menuInfoList}></CommercialHeader>
+            <CommercialHeader {...location.state}></CommercialHeader>
         </div>
     )
 }
