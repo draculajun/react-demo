@@ -18,18 +18,18 @@ li {
     justify-content: center;
     align-items: center;
 
+    .menuIcon {
+      margin-right: 10px;
+      margin-bottom: -2px;
+      width: 20px;
+      height: 20px;
+    }
+
     .menuName {
       display: flex;
       min-width: 60px;
       justify-content: space-between;
     }
-  }
-
-  .menuIcon {
-    margin-right: 10px;
-    margin-bottom: -2px;
-    width: 20px;
-    height: 20px;
   }
 
   > li {
