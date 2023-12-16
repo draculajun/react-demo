@@ -39,7 +39,7 @@ export default function CommercialHeader({menuInfoList, industryId, subIndustryI
             e.preventDefault();
             setCurrentIndustry(item.IndustryId);
 
-            let tmpSubIndustryList = initSubIndustry;
+            let tmpSubIndustryList = [initSubIndustry];
             if (item.IndustryId !== 0) {
                 tmpSubIndustryList.push(...menuInfoIndustryMap.get(item.IndustryId))
             }
