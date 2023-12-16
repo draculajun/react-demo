@@ -7,6 +7,7 @@ import Todo from "../components/todo/Todo";
 import HelloWorld3 from "../pages/helloWorld/HelloWorld3";
 import ErrorPage from "../pages/ErrorPage";
 import {Index} from "../pages/Index";
+import Commercial from '../pages/commercial/Index';
 
 const router = createBrowserRouter([
     {
@@ -40,7 +41,10 @@ const router = createBrowserRouter([
             }, {
                 path: "todo",
                 element: <Todo/>,
-            }
+            }, {
+                path: 'commercial',
+                element: <Commercial/>
+            },
         ]
     }, {
         path: "*",

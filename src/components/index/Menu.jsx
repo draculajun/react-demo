@@ -1,8 +1,11 @@
 import './menu.scss';
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 export default function Menu({menuInfoList}) {
     const [currentSubmenuInfoList, setCurrentSubmenuInfoList] = useState([]);
+
+    const navigate = useNavigate();
 
     function handleMenuMouserOver(item) {
         return () => {
@@ -14,6 +17,14 @@ export default function Menu({menuInfoList}) {
         return () => {
 
         }
+    }
+
+    function subItemHandleClick() {
+        navigate('/commercial', {
+            state: {
+                menuInfoList: menuInfoList,
+            }
+        })
     }
 
     return (
@@ -35,7 +46,7 @@ export default function Menu({menuInfoList}) {
                                 <ul className={'subMenu_wrapper'}>
                                     {
                                         currentSubmenuInfoList.map((subItem) => (
-                                            <li key={subItem.IndusId}>
+                                            <li key={subItem.IndusId} onClick={subItemHandleClick}>
                                                 {subItem.Name}
                                             </li>
                                         ))

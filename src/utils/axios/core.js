@@ -9,11 +9,40 @@ const getLoginHeader = () => {
 
 }
 
+const defaultHeader = () => {
+    let defaultConfig = {
+        cid: 10992,
+        device: 1,
+    };
+    // let fullUrl = window.location.href;
+    // let paramMap = parseUrlParams(fullUrl);
+    // paramMap.has('channel') ? (defaultConfig['channel'] = paramMap.get('channel')) : (defaultConfig['channel'] = defaultChannel);
+    return defaultConfig;
+}
+
+const megerHeader = (header, config) => {
+    if (header) {
+        ["utoken", "cid", "Uid", "channel", "device", "IsRealNameAuth"].forEach(key => {
+            if (header[key] != null) {
+                config.headers[key] = header[key];
+            }
+        });
+    }
+}
+
 const kcAxios = axios.create({
     timeout: timeout,
 });
 
 kcAxios.interceptors.request.use(config => {
+    let dHeader = defaultHeader();
+    let loginHeader = getLoginHeader();
+    if (loginHeader) {
+        let header = {...dHeader, ...loginHeader};
+        megerHeader(header, config);
+    } else {
+        megerHeader(dHeader, config);
+    }
     return config;
 });
 
