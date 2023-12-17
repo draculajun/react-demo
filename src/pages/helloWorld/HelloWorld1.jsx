@@ -1,9 +1,6 @@
-import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 export default function HelloWorld1() {
-
-    const [aaa, setAaa] = useState(true);
 
     const navigate = useNavigate();
 
@@ -21,7 +18,7 @@ export default function HelloWorld1() {
     return (
         <>
             {
-                aaa ? <h1>Hello World 1</h1> : null
+                <h1>Hello World 1</h1>
             }
 
             <button onClick={handleJump}>jumpToHelloWorld3</button>

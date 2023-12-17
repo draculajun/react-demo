@@ -1,6 +1,6 @@
 import CommercialHeader from "../../components/commercial/CommercialHeader";
 import {useLocation} from "react-router-dom";
-import {Tabs} from "antd";
+import {Spin, Tabs} from "antd";
 import HonestyBusiness from "../../components/index/HonestyBusiness";
 import {useEffect, useState} from "react";
 import CardsApi from "../../api/cards";
@@ -9,9 +9,12 @@ export default function Index() {
 
     const location = useLocation();
 
+    const [loading, setLoading] = useState(false);
+
     const [honestyBusinessList, setHonestyBusinessList] = useState([]);
 
     useEffect(() => {
+        setLoading(true);
         CardsApi.page({
             industryId: location.state.industryId,
             bindId: location.state.subIndustryId,
@@ -19,21 +22,22 @@ export default function Index() {
             pageSize: 10,
         }).then(res => {
             setHonestyBusinessList(res.data.Lists);
+            setLoading(false);
         })
-    }, []);
+    }, [location.state.industryId, location.state.subIndustryId]);
 
-    const orderTypelist = [
-        {
-            id: 1,
-            name: '销量',
-        }, {
-            id: 2,
-            name: '价格',
-        }, {
-            id: 3,
-            name: '评分',
-        },
-    ];
+    // const orderTypelist = [
+    //     {
+    //         id: 1,
+    //         name: '销量',
+    //     }, {
+    //         id: 2,
+    //         name: '价格',
+    //     }, {
+    //         id: 3,
+    //         name: '评分',
+    //     },
+    // ];
 
     return (
         <div>
@@ -45,7 +49,9 @@ export default function Index() {
             }]}>
             </Tabs>
 
-            <HonestyBusiness honestyBusinessList={honestyBusinessList}></HonestyBusiness>
+            <Spin spinning={loading}>
+                <HonestyBusiness honestyBusinessList={honestyBusinessList}></HonestyBusiness>
+            </Spin>
         </div>
     )
 }

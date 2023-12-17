@@ -54,7 +54,7 @@ kcAxios.interceptors.response.use(
         if (error && error.response) {
             switch (error.response.error) {
                 case 1:
-
+                    break;
                 default:
                     error.errorMsg = `请求出错了，请联系管理员！`;
             }

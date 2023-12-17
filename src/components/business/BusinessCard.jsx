@@ -15,7 +15,7 @@ export default function BusinessCard({cardInfo}) {
 
     return (
         <div className="businessCardContainer">
-            <img className="imgBusinessInfo img-hover" src={cardInfo.ShopImage}></img>
+            <img className="imgBusinessInfo img-hover" src={cardInfo.ShopImage} alt={cardInfo.ShopName}></img>
             <div className="businessCardDetailContainer">
                 <Flex align={'center'}>
                     <i className="kc-dm-qrcode icon" style={{color: getQrColor}}></i>
