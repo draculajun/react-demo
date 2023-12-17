@@ -1,0 +1,121 @@
+@font-face {
+  font-family: "digitalmall"; /* Project id 4309165 */
+  src: url('iconfont.woff2?t=1698731070813') format('woff2'),
+       url('iconfont.woff?t=1698731070813') format('woff'),
+       url('iconfont.ttf?t=1698731070813') format('truetype');
+}
+
+.digitalmall {
+  font-family: "digitalmall" !important;
+  font-size: 18px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="kc-dm-"], [class*=" kc-dm-"] {
+  font-family:"digitalmall" !important;
+  /* 以下内容参照第三方图标库本身的规则 */
+  font-size: 18px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.kc-dm-cunguan:before {
+  content: "\e81e";
+}
+
+.kc-dm-baoxian:before {
+  content: "\e81f";
+}
+
+.kc-dm-wuliu:before {
+  content: "\e81c";
+}
+
+.kc-dm-home:before {
+  content: "\e683";
+}
+
+.kc-dm-message:before {
+  content: "\e6ba";
+}
+
+.kc-dm-gonggao:before {
+  content: "\e81d";
+}
+
+.kc-dm-biaozhunhetong:before {
+  content: "\e68c";
+}
+
+.kc-dm-xiaofeizhanghu:before {
+  content: "\e6ac";
+}
+
+.kc-dm-shanghu:before {
+  content: "\e6c4";
+}
+
+.kc-dm-beiandengji:before {
+  content: "\e726";
+}
+
+.kc-dm-search:before {
+  content: "\e60f";
+}
+
+.kc-dm-jianguanzhanghu:before {
+  content: "\e816";
+}
+
+.kc-dm-biaoshi:before {
+  content: "\e815";
+}
+
+.kc-dm-star:before {
+  content: "\e814";
+}
+
+.kc-dm-women:before {
+  content: "\e80c";
+}
+
+.kc-dm-pinglun:before {
+  content: "\e80d";
+}
+
+.kc-dm-gouwudai:before {
+  content: "\e80e";
+}
+
+.kc-dm-changjiancaozuo:before {
+  content: "\e80f";
+}
+
+.kc-dm-qrcode:before {
+  content: "\e810";
+}
+
+.kc-dm-zuobiao:before {
+  content: "\e807";
+}
+
+.kc-dm-shoppingcart:before {
+  content: "\e808";
+}
+
+.kc-dm-shouhou:before {
+  content: "\e809";
+}
+
+.kc-dm-miniprogram:before {
+  content: "\e80a";
+}
+
+.kc-dm-wechat:before {
+  content: "\e80b";
+}
+
+

@@ -1,0 +1,40 @@
+.businessCardContainer {
+  height: 276px;
+  background: rgb(244, 244, 244);
+
+  &:hover {
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  .imgBusinessInfo {
+    width: 274px;
+    height: 177px;
+  }
+
+  .businessCardDetailContainer {
+    padding: 10px 5px 0 10px;
+
+    .el-row {
+      margin-bottom: 5px;
+    }
+
+    .icon {
+      font-size:16px;
+      margin-top: 2px;
+    }
+  }
+
+  .spanName {
+    margin-left: 12px;
+    color: rgb(51, 51, 51);
+    font-family: 思源黑体;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 14px;
+    width: 230px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+}

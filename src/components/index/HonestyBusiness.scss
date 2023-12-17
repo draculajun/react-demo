@@ -1,0 +1,19 @@
+.honestyBusinessContainer {
+  margin-top: 20px;
+
+  .title {
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 思源黑体;
+    font-size: 18px;
+  }
+
+  .businessCard_wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-items: center;
+
+    margin: 10px;
+  }
+}
