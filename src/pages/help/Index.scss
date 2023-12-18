@@ -1,0 +1,42 @@
+.helpContainer {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  font-family: 思源黑体;
+  font-size: 14px;
+  font-weight: 400;
+
+  .leftMenuContainer {
+    width: 244px;
+    background: rgb(248, 248, 248);
+    padding: 10px;
+
+    .subTitle {
+      padding: 0px 0 0 10px;
+      height: 40px;
+      line-height: 40px;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      margin: 0px;
+      padding: 0px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    ul a {
+      list-style: none;
+      background: white;
+      line-height: 40px;
+      width: 214px;
+      padding-left: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+}
+
+

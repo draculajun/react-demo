@@ -8,6 +8,8 @@ import HelloWorld3 from "../pages/helloWorld/HelloWorld3";
 import ErrorPage from "../pages/ErrorPage";
 import {Index} from "../pages/Index";
 import Commercial from '../pages/commercial/Index';
+import EmptyBreadcrmb from "../pages/EmptyBreadcrmb";
+import help from "./help";
 
 const router = createBrowserRouter([
     {
@@ -44,7 +46,19 @@ const router = createBrowserRouter([
             }, {
                 path: 'commercial',
                 element: <Commercial/>
-            },
+            }, {
+                path: 'emptyBreadcrmb',
+                element: <Navigate to="/emptyBreadcrmb/help/"/>
+            }, {
+                path: 'emptyBreadcrmb/help',
+                element: <Navigate to="/emptyBreadcrmb/help/shoppingProcess"/>
+            }, {
+                path: 'emptyBreadcrmb',
+                element: <EmptyBreadcrmb/>,
+                children: [
+                    help,
+                ],
+            }
         ]
     }, {
         path: "*",
