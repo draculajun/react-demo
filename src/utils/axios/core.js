@@ -13,6 +13,7 @@ const defaultHeader = () => {
     let defaultConfig = {
         cid: 10992,
         device: 1,
+        channel: 11,
     };
     // let fullUrl = window.location.href;
     // let paramMap = parseUrlParams(fullUrl);
