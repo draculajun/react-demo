@@ -16,8 +16,8 @@ export default function Index() {
     const [total, setTotal] = useState(0);
 
     const [search, setSearch] = useState({
-        industryId: 0,
-        bindId: 0,
+        industryId: location.state.industryId,
+        bindId: location.state.subIndustryId,
         did: 0,
         districtId: 0,
         sortId: 0,
@@ -26,21 +26,12 @@ export default function Index() {
     });
 
     useEffect(() => {
-        queryCards(location.state.industryId, location.state.subIndustryId, 1, search.pageSize);
-    }, [location.state.industryId, location.state.subIndustryId]);
+        queryCards(search);
+    }, [search.industryId, search.bindId, search.page, search.pageSize]);
 
-    function queryCards(currentIndustry, currentSubIndustry, page, pageSize) {
-        let tmpSearch = {
-            ...search,
-            industryId: currentIndustry,
-            bindId: currentSubIndustry,
-            page: page,
-            pageSize: pageSize,
-        }
-        setSearch(tmpSearch);
-
+    function queryCards(search) {
         setLoading(true);
-        CardsApi.page(tmpSearch).then(res => {
+        CardsApi.page(search).then(res => {
             setHonestyBusinessList(res.data.Lists);
 
             setTotal(res.data.TotalNum);
@@ -49,11 +40,20 @@ export default function Index() {
     }
 
     function handleCommercialChange(currentIndustry, currentSubIndustry) {
-        queryCards(currentIndustry, currentSubIndustry, search.page, search.pageSize);
+        setSearch({
+            ...search,
+            page: 1,
+            industryId: currentIndustry,
+            bindId: currentSubIndustry,
+        });
     }
 
     function handleCommercialPageChange(page, pageSize) {
-        queryCards(search.industryId, search.bindId, page, pageSize);
+        setSearch({
+            ...search,
+            page: page,
+            pageSize: pageSize,
+        });
     }
 
     return (
