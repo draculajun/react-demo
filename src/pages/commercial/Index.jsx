@@ -13,30 +13,34 @@ export default function Index() {
     const [loading, setLoading] = useState(false);
 
     const [honestyBusinessList, setHonestyBusinessList] = useState([]);
-    const [currentIndustry, setCurrentIndustry] = useState(0);
-    const [currentSubIndustry, setCurrentSubIndustry] = useState(0);
-    const [page, setPage] = useState(1);
     const [total, setTotal] = useState(0);
-    const pageSize = 8;
+
+    const [search, setSearch] = useState({
+        industryId: 0,
+        bindId: 0,
+        did: 0,
+        districtId: 0,
+        sortId: 0,
+        page: 1,
+        pageSize: 8,
+    });
 
     useEffect(() => {
-        queryCards(location.state.industryId, location.state.subIndustryId, 1, pageSize);
+        queryCards(location.state.industryId, location.state.subIndustryId, 1, search.pageSize);
     }, [location.state.industryId, location.state.subIndustryId]);
 
     function queryCards(currentIndustry, currentSubIndustry, page, pageSize) {
-        setCurrentIndustry(currentIndustry);
-        setCurrentSubIndustry(currentSubIndustry);
-
-        setLoading(true);
-        CardsApi.page({
+        let tmpSearch = {
+            ...search,
             industryId: currentIndustry,
             bindId: currentSubIndustry,
-            did: 0,
-            districtId: 0,
-            sortId: 0,
             page: page,
             pageSize: pageSize,
-        }).then(res => {
+        }
+        setSearch(tmpSearch);
+
+        setLoading(true);
+        CardsApi.page(tmpSearch).then(res => {
             setHonestyBusinessList(res.data.Lists);
 
             setTotal(res.data.TotalNum);
@@ -45,11 +49,11 @@ export default function Index() {
     }
 
     function handleCommercialChange(currentIndustry, currentSubIndustry) {
-        queryCards(currentIndustry, currentSubIndustry, page, pageSize);
+        queryCards(currentIndustry, currentSubIndustry, search.page, search.pageSize);
     }
 
     function handleCommercialPageChange(page, pageSize) {
-        queryCards(currentIndustry, currentSubIndustry, page, pageSize);
+        queryCards(search.industryId, search.bindId, page, pageSize);
     }
 
     return (
@@ -64,8 +68,8 @@ export default function Index() {
                 </Tabs>
 
                 <div className="orderBtnGroupContainer">
-                    <Pagination class="pagination_wrapper" size="small" defaultCurrent={page} total={total}
-                                pageSize={pageSize} onChange={handleCommercialPageChange}/>
+                    <Pagination class="pagination_wrapper" size="small" defaultCurrent={search.page} total={total}
+                                pageSize={search.pageSize} onChange={handleCommercialPageChange}/>
                 </div>
             </div>
 
