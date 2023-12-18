@@ -73,25 +73,6 @@ export default function Index() {
                 </div>
             </div>
 
-            {/*            <div class="orderBtnGroupContainer">
-                <!-- 原型界面要求允许升序降序，后台接口目前不具备此功能，故改用li
-                <OrderBtn v-for="(item, index) in orderTypelist" :key="index" :btnInfo="item" name="name"
-                          @click="orderBtnClickHandler">
-                </OrderBtn>-->
-                <ul class="orderBtn_wrapper">
-                    <li v-for="(item) in orderTypelist" :key="item.id">
-                    <a href="#" :class="item.clicked == true ? 'active' : ''"
-                    @click.prevent="orderBtnClickHandler(item)">{{ item.name }}</a>
-            </li>
-        </ul>
-
-        <el-pagination small class="pagination_wrapper" layout="prev, pager, next"
-                           :total="parseInt(pageInfo.total)"
-    :page-size="pageInfo.pageSize"
-    :current-page.sync="pageInfo.page"
-    @current-change="pageChangeHandler"/>
-            </div>*/}
-
             <Spin spinning={loading}>
                 <HonestyBusiness honestyBusinessList={honestyBusinessList}></HonestyBusiness>
             </Spin>
