@@ -2,7 +2,7 @@ import {useState} from "react";
 import './CommercialHeader.scss';
 import {Button} from "antd";
 
-export default function CommercialHeader({industryList, industryId, subIndustryId}) {
+export default function CommercialHeader({industryList, industryId, subIndustryId, onChange}) {
     let menuInfoIndustryMap = new Map();
     industryList.forEach(e => {
         menuInfoIndustryMap.set(e.IndustryId, e.Sub);
@@ -46,6 +46,8 @@ export default function CommercialHeader({industryList, industryId, subIndustryI
 
             setSubIndustryList(tmpSubIndustryList);
             setCurrentSubIndustry(0);
+
+            onChange(item.IndustryId, 0);
         }
     }
 
@@ -54,6 +56,8 @@ export default function CommercialHeader({industryList, industryId, subIndustryI
             e.preventDefault();
 
             setCurrentSubIndustry(item.IndusId);
+
+            onChange(currentIndustry, item.IndusId);
         }
     }
 

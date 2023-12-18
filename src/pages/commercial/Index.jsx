@@ -14,34 +14,29 @@ export default function Index() {
     const [honestyBusinessList, setHonestyBusinessList] = useState([]);
 
     useEffect(() => {
+        queryCards(location.state.industryId, location.state.subIndustryId, 1, 10);
+    }, [location.state.industryId, location.state.subIndustryId]);
+
+    function queryCards(currentIndustry, currentSubIndustry, page, pageSize) {
         setLoading(true);
         CardsApi.page({
-            industryId: location.state.industryId,
-            bindId: location.state.subIndustryId,
-            page: 1,
-            pageSize: 10,
+            industryId: currentIndustry,
+            bindId: currentSubIndustry,
+            page: page,
+            pageSize: pageSize,
         }).then(res => {
             setHonestyBusinessList(res.data.Lists);
             setLoading(false);
         })
-    }, [location.state.industryId, location.state.subIndustryId]);
+    }
 
-    // const orderTypelist = [
-    //     {
-    //         id: 1,
-    //         name: '销量',
-    //     }, {
-    //         id: 2,
-    //         name: '价格',
-    //     }, {
-    //         id: 3,
-    //         name: '评分',
-    //     },
-    // ];
+    function handleCommercialChange(currentIndustry, currentSubIndustry) {
+        queryCards(currentIndustry, currentSubIndustry, 1, 10);
+    }
 
     return (
         <div>
-            <CommercialHeader {...location.state}></CommercialHeader>
+            <CommercialHeader {...location.state} onChange={handleCommercialChange}></CommercialHeader>
 
             <Tabs defaultActiveKey="1" items={[{
                 key: '1',
