@@ -47,9 +47,6 @@ const router = createBrowserRouter([
                 path: 'commercial',
                 element: <Commercial/>
             }, {
-                path: 'emptyBreadcrmb',
-                element: <Navigate to="/emptyBreadcrmb/help/"/>
-            }, {
                 path: 'emptyBreadcrmb/help',
                 element: <Navigate to="/emptyBreadcrmb/help/shoppingProcess"/>
             }, {
