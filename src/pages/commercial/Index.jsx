@@ -26,18 +26,26 @@ export default function Index() {
     });
 
     useEffect(() => {
+        let ignore = false;
+
+        async function queryCards(search) {
+            setLoading(true);
+            const res = await CardsApi.page(search);
+            if (!ignore) {
+                setHonestyBusinessList(res.data.Lists);
+
+                setTotal(res.data.TotalNum);
+                setLoading(false);
+            }
+        }
+
         queryCards(search);
+
+        return () => {
+            ignore = true;
+        }
     }, [search.industryId, search.bindId, search.page, search.pageSize]);
 
-    function queryCards(search) {
-        setLoading(true);
-        CardsApi.page(search).then(res => {
-            setHonestyBusinessList(res.data.Lists);
-
-            setTotal(res.data.TotalNum);
-            setLoading(false);
-        });
-    }
 
     function handleCommercialChange(currentIndustry, currentSubIndustry) {
         setSearch({
