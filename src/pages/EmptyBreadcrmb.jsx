@@ -33,7 +33,7 @@ export default function EmptyBreadcrmb() {
             <Breadcrumb.Item key={index}>
                 <NavLink className={index == tmpBreadcrumbItemsArr.length - 1 ? 'linked' : ''}
                          to={`/${routeConfigMap.get(item).fullPath}`}>
-                    {item == '' ? '' : routeConfigMap.get(item).title}
+                    {routeConfigMap.get(item).title}
                 </NavLink>
             </Breadcrumb.Item>
         ));
