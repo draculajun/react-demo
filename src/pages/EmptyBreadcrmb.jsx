@@ -12,7 +12,7 @@ export default function EmptyBreadcrmb() {
     let routeConfigMap = new Map();
 
     function getRouteConfigMap(routeConfig, parentPath) {
-        routeConfig.map(e => {
+        routeConfig.forEach(e => {
             routeConfigMap.set(e.path, {
                 fullPath: parentPath == null ? e.path : (parentPath == '/' ? '' : parentPath + '/') + e.path,
                 title: e.title,
@@ -42,7 +42,7 @@ export default function EmptyBreadcrmb() {
         tmpBreadcrumbItems = tmpBreadcrumbItems.splice(1);
         tmpBreadcrumbItems = [
             <Breadcrumb.Item key={1}>
-                <NavLink to={'/'}>主页</NavLink>
+                <NavLink to={'/index'}>主页</NavLink>
             </Breadcrumb.Item>, ...tmpBreadcrumbItems
         ];
 
