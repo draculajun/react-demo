@@ -44,7 +44,7 @@ export default function Index() {
         return () => {
             ignore = true;
         }
-    }, [search.industryId, search.bindId, search.page, search.pageSize]);
+    }, [search]);
 
 
     function handleCommercialChange(currentIndustry, currentSubIndustry) {

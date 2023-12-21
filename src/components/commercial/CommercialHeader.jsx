@@ -1,12 +1,15 @@
-import {useState} from "react";
+import {useState, useMemo} from "react";
 import './CommercialHeader.scss';
 import {Button} from "antd";
 
 export default function CommercialHeader({industryList, industryId, subIndustryId, onChange}) {
-    let menuInfoIndustryMap = new Map();
-    industryList.forEach(e => {
-        menuInfoIndustryMap.set(e.IndustryId, e.Sub);
-    });
+    const menuInfoIndustryMap = useMemo(() => {
+        let tmpMap = new Map();
+        industryList.forEach(e => {
+            tmpMap.set(e.IndustryId, e.Sub);
+        });
+        return tmpMap;
+    }, [industryList]);
 
     industryList = [
         {
