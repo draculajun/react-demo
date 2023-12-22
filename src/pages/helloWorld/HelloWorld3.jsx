@@ -1,4 +1,5 @@
 import {useLocation} from "react-router-dom";
+import UseMemoAndUseCallback from "./UseMemoAndUseCallback";
 
 export default function HelloWorld3() {
     const location = useLocation();
@@ -11,6 +12,8 @@ export default function HelloWorld3() {
     return (
         <>
             <h1>Hello World {id}</h1>
+
+            <UseMemoAndUseCallback></UseMemoAndUseCallback>
         </>
     )
 }
