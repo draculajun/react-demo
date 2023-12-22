@@ -47,26 +47,29 @@ export default function Index() {
     }, [search]);
 
 
-    function handleCommercialChange(currentIndustry, currentSubIndustry) {
+    const handleCommercialChange = (currentIndustry, currentSubIndustry) => {
         setSearch({
             ...search,
             page: 1,
             industryId: currentIndustry,
             bindId: currentSubIndustry,
         });
-    }
+    };
 
-    function handleCommercialPageChange(page, pageSize) {
+    const handleCommercialPageChange = (page, pageSize) => {
         setSearch({
             ...search,
             page: page,
             pageSize: pageSize,
         });
-    }
+    };
 
     return (
         <div className="commercialContainer">
-            <CommercialHeader {...location.state} onChange={handleCommercialChange}></CommercialHeader>
+            <CommercialHeader industryId={search.industryId}
+                              bindId={search.bindId}
+                              industryList={location.state.industryList}
+                              onChange={handleCommercialChange}></CommercialHeader>
 
             <div className="tabContainer">
                 <Tabs defaultActiveKey="1" items={[{
