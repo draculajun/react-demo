@@ -10,6 +10,7 @@ import {Index} from "../pages/Index";
 import Commercial from '../pages/commercial/Index';
 import EmptyBreadcrmb from "../pages/EmptyBreadcrmb";
 import help from "./help";
+import {ReducerTest} from "../pages/ReducerTest";
 
 const routeConfig = [
     {
@@ -60,6 +61,9 @@ const routeConfig = [
                 children: [
                     help,
                 ],
+            }, {
+                path: 'reduceTest',
+                element: <ReducerTest/>
             }
         ]
     }, {
